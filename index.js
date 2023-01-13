@@ -1,5 +1,6 @@
 const fs = require('fs');
 
+// Считать файл по 2 байта с интервалами в 1 сек
 const readStream = fs.createReadStream('./readme3.txt', {highWaterMark: 2});
 let chunkCount = 0
 
@@ -12,6 +13,7 @@ readStream.on('data', (chunk) => {
     }, 1000);
 })
 
+// Считывать process.stdin по 4 байта, и писать в файл потоком по 8 байт
 const { Duplex } = require('node:stream');
 class DuplexCustom extends Duplex {
     constructor(options) {
